@@ -1,0 +1,117 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Leroy Merlin - Atualiza\u00e7\u00e3o de produtos via planilha",
+        "version": "0.0.1"
+    },
+    "paths": {
+        "/api/products": {
+            "get": {
+                "summary": "List products",
+                "responses": {
+                    "200": {
+                        "description": "A list with products or empty array[]"
+                    },
+                    "500": {
+                        "description": "Intenal server error"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a product",
+                "parameters": [
+                    {
+                        "name": "file",
+                        "in": "formData",
+                        "description": "excel file with products",
+                        "required": true,
+                        "schema": {
+                            "type": "file"
+                        },
+                        "type": "file"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Products created"
+                    },
+                    "400": {
+                        "description": "Invalid file"
+                    }
+                }
+            }
+        },
+        "/api/products/{lm}": {
+            "get": {
+                "summary": "Show a product",
+                "parameters": [
+                    {
+                        "name": "lm",
+                        "in": "path",
+                        "description": "product lm",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Product"
+                    },
+                    "404": {
+                        "description": "Product not found"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update a product",
+                "parameters": [
+                    {
+                        "name": "lm",
+                        "in": "path",
+                        "description": "product lm",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "product",
+                        "in": "body",
+                        "description": "Product object",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Product"
+                    },
+                    "404": {
+                        "description": "Product not found"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a product",
+                "parameters": [
+                    {
+                        "name": "lm",
+                        "in": "path",
+                        "description": "product lm",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Product deleted"
+                    },
+                    "404": {
+                        "description": "Product not found"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {}
+}
